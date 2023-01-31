@@ -1,6 +1,7 @@
 ﻿using ApexInventory.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
+using System.Collections.Generic;
 
 namespace ApexInventory.Controllers
 {
@@ -15,7 +16,22 @@ namespace ApexInventory.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            List<Item> listItems = new List<Item>()
+            {
+               new Item() { ItemId = 101, Name = "Lamp", Description = "Info.." },
+               new Item() { ItemId = 102, Name = "Vase", Description = "Info.." },
+               new Item() {ItemId = 103, Name = "Cupboard", Description = "Info.."},
+               new Item() {ItemId = 104, Name = "Computer", Description = "Info.."},
+               new Item() {ItemId = 105, Name = "Chair", Description = "Info.."}
+            };
+            return View(listItems);
+        }
+
+        public IActionResult Details(int Id)
+        {
+            var itemDetails = new Item() { ItemId = Id, Name = "Lamp", Description = "Info..." };
+
+            return View(itemDetails);
         }
 
         public IActionResult Privacy()
